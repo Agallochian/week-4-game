@@ -1,59 +1,100 @@
+var bastila = {
+		name: "Bastila",
+		hp: 100,
+		pw: 7,
+		cp: 15
+	}
+
+	var malak = {
+		name: "Malak",
+		hp: 150,
+		pw: 5,
+		cp: 10
+	}
+
+	var revan = {
+		name: "Revan",
+		hp: 225,
+		pw: 3,
+		cp: 18
+	}
+
+	var traya = {
+		name: "Traya",
+		hp: 75,
+		pw: 10,
+		cp: 30
+	}
+
+
 $(document).ready(function() {
 
-	var bastilahp = 100;
+	
 
-	var malakhp = 150;
+	// var bastilahp = 100;
 
-	var revanhp = 225;
+	// var malakhp = 150;
 
-	var trayahp = 75;
+	// var revanhp = 225;
 
-	var bastilaPW = 7;
+	// var trayahp = 75;
 
-	var malakPW = 5;
+	// var bastilaPW = 7;
 
-	var revanPW = 3;
+	// var malakPW = 5;
 
-	var trayaPW = 10;
+	// var revanPW = 3;
 
-	var bastilaCP = 15;
+	// var trayaPW = 10;
 
-	var malakCP = 10;
+	// var bastilaCP = 15;
 
-	var revanCP = 18;
+	// var malakCP = 10;
 
-	var trayaCP = 30;
+	// //var revanCP = 18;
 
-	var playable = []
+	// //var trayaCP = 30;
 
-	$(".bastila").data(bastilahp, bastilaPW, bastilaCP);
+	var characterid;
 
-	$(".malak").data(malakhp, malakPW, malakCP);
+	var opponentid;
 
-	$(".revan").data(revanhp, revanPW, revanCP);
+	var attackcounter = 1;
 
-	$(".traya").data(trayahp, trayaPW, trayaCP);
+	// $(".bastila").data(bastilahp, bastilaPW, bastilaCP);
 
-	$(".BHP").html("Bastila HP: " + bastilahp);
+	// $(".malak").data(malakhp, malakPW, malakCP);
 
-	$(".MHP").html("Malak HP: " + malakhp);
+	// $(".revan").data(revanhp, revanPW, revanCP);
 
-	$(".RHP").html("Revan HP: " + revanhp);
+	// $(".traya").data(trayahp, trayaPW, trayaCP);
+	
 
-	$(".THP").html("Traya HP: " + trayahp);
+	$(".BHP").html("Bastila HP: " + bastila.hp);
 
-	$(".bastila, .malak, .revan, .traya").one("click", function(){
+	$(".MHP").html("Malak HP: " + malak.hp);
+
+	$(".RHP").html("Revan HP: " + revan.hp);
+
+	$(".THP").html("Traya HP: " + traya.hp);
+
+	$("#bastila, #malak, #revan, #traya").one("click", function(){
 		$(this).appendTo(".yourcharacter").addClass("user");
-
+			characterid = $(this).attr("id");
+			
 		
 		$(".character_row").children().addClass("defender").appendTo(".enemies");
 
 
-		$(".bastila, .malak, .revan, .traya").off("click");
+		$("#bastila, #malak, #revan, #traya").off("click");
 
 		$(".defender").one("click", function(){
 			
 			$(this).appendTo(".opponent");
+			opponentid = $(this).attr("id");
+
+
+		$("#bastila, #malak, #revan, #traya").off("click");
 		});
 
 
@@ -62,14 +103,12 @@ $(document).ready(function() {
 
 	$(".btn").on("click", function(){
 
-		bastilaPW += 7;
-		malakPW += 5;
-		revanPW += 3;
-		trayaPW += 10;
+		window[characterid].hp = window[characterid].hp - window[opponentid].cp;
+		window[opponentid].hp = window[opponentid].hp - window[characterid].pw * attackcounter;
+		attackcounter++;
 
-		if (user) {}
-
-		console.log(bastilaPW);
+		console.log(window[characterid].hp);
+		console.log(window[opponentid].hp);
 		
 	});
 
