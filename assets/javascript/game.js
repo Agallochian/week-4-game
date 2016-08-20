@@ -107,6 +107,21 @@ $(document).ready(function() {
 		window[opponentid].hp = window[opponentid].hp - window[characterid].pw * attackcounter;
 		attackcounter++;
 
+		if (window[characterid].hp > -1) {
+				$(".user").html("HP: " + window[characterid].hp);
+			} else {
+				window[characterid].hp = 0;
+				$(".user").html("HP: " + window[characterid].hp);
+			}
+			if (window[opponentid].hp > -1) {
+				$(".opponent").html("HP: " + window[opponentid].hp);
+			} else {
+				window[opponentid].hp = 0;
+				$(".opponent").html("HP: " + window[opponentid].hp);
+			}
+
+			// Hello Darkness My Old Friend
+
 		console.log(window[characterid].hp);
 		console.log(window[opponentid].hp);
 		
